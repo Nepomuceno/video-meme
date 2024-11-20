@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Module",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "video_meme.main",
+      "justMyCode": true,
+      "args": [
+        "--video_path",
+        "movie.mp4",
+        "--words",
+        "ai",
+        "copilot",
+        "--model_size",
+        "distil-small.en",
+        "--sample"
+      ]
+    }
+  ]
+}

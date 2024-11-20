@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "video-meme"
+version = "1.0.0"
+description = "A command-line tool for analyzing videos, extracting clips, and transcribing audio with advanced word analysis."
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "Gabriel Nepomuceno", email = "gabriel.bico@gmail.com"}
+]
+keywords = ["video", "transcription", "analysis", "moviepy", "whisper"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Utilities"
+]
+dependencies = [
+    "moviepy",
+    "faster-whisper",
+    "tqdm",
+]
+
+[project.scripts]
+video-meme = "video_meme.main:entrypoint"
