@@ -22,10 +22,13 @@ classifiers = [
     "Topic :: Utilities"
 ]
 dependencies = [
-    "moviepy",
-    "faster-whisper",
-    "tqdm",
+    "moviepy >= 2.0.0",
+    "faster-whisper >= 1.0.3",
+    "tqdm >= 4.67.0",
 ]
+
+[tool.setuptools]
+packages = ["video_meme"]
 
 [project.scripts]
 video-meme = "video_meme.main:entrypoint"

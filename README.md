@@ -78,6 +78,8 @@ Output:
 
 ### Clone the Repository
 
+We do recomend the use of uv to manage dependiencies: [https://docs.astral.sh/uv/]
+
 ```bash
 git clone https://github.com/Nepomuceno/video-meme.git
 cd video-meme

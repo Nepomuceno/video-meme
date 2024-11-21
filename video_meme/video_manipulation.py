@@ -2,9 +2,10 @@ import os
 import subprocess
 import random
 from tqdm import tqdm
-from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.video.io.VideoFileClip import VideoFileClip
-from moviepy.video.compositing.concatenate import concatenate_videoclips
+from moviepy.video.compositing import concatenate_videoclips
 from moviepy.video.VideoClip import ColorClip
 from moviepy.tools import subprocess_call
 from moviepy.config import get_setting
@@ -26,22 +27,6 @@ def sample_video(video_path, output_dir, sample_length=300):
         ffmpeg_extract_subclip(video_path, start, end, targetname=sample_path)
         print(f"Sample video created from {start}s to {end}s.")
         return start, end, sample_path
-
-def ffmpeg_extract_subclip(filename, t1, t2, targetname=None):
-    """ Makes a new video file playing video file ``filename`` between
-        the times ``t1`` and ``t2``. """
-    name, ext = os.path.splitext(filename)
-    if not targetname:
-        T1, T2 = [int(1000*t) for t in [t1, t2]]
-        targetname = "%sSUB%d_%d.%s" % (name, T1, T2, ext)
-    
-    cmd = [get_setting("FFMPEG_BINARY"),"-y",
-           "-ss", "%0.2f"%t1,
-           "-i", filename,
-           "-t", "%0.2f"%(t2-t1),
-           "-map", "0", "-vcodec", "copy", "-acodec", "copy", targetname]
-    
-    subprocess_call(cmd)
     
 def save_combined_clip(video_path, output_dir, video_segments):
     """
