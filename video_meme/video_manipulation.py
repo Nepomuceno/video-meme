@@ -3,12 +3,10 @@ import subprocess
 import random
 from tqdm import tqdm
 from moviepy import VideoFileClip
-from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.video.io.VideoFileClip import VideoFileClip
-from moviepy.video.compositing import concatenate_videoclips
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
+from moviepy.video.compositing.CompositeVideoClip import concatenate_videoclips
 from moviepy.video.VideoClip import ColorClip
-from moviepy.tools import subprocess_call
-from moviepy.config import get_setting
 
 
 def sample_video(video_path, output_dir, sample_length=300):
@@ -27,7 +25,8 @@ def sample_video(video_path, output_dir, sample_length=300):
         ffmpeg_extract_subclip(video_path, start, end, targetname=sample_path)
         print(f"Sample video created from {start}s to {end}s.")
         return start, end, sample_path
-    
+
+   
 def save_combined_clip(video_path, output_dir, video_segments):
     """
     Saves a single combined video clip for all segments containing the target words,
@@ -38,7 +37,7 @@ def save_combined_clip(video_path, output_dir, video_segments):
 
     clips = []
     for start, end in tqdm(video_segments, desc="Extracting clips"):
-        clip = VideoFileClip(video_path).subclip(start, end)
+        clip = VideoFileClip(video_path).with_subclip(start, end)
         clips.append(clip)
 
         # Add a 0.1-second blank (black) clip

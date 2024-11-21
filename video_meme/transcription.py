@@ -1,7 +1,7 @@
 import os
 from tqdm import tqdm
 from faster_whisper import WhisperModel
-from moviepy.editor import AudioFileClip
+from moviepy import AudioFileClip
 
 
 
