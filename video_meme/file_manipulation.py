@@ -1,9 +1,5 @@
 import os
-import subprocess
-import hashlib
 import json
-import argparse
-import random
 import datetime
 
 def setup_output_dir(video_hash):
