@@ -1,17 +1,10 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "video-meme"
 version = "1.0.0"
 description = "A command-line tool for analyzing videos, extracting clips, and transcribing audio with advanced word analysis."
 readme = "README.md"
-requires-python = ">=3.7"
-license = {text = "MIT"}
-authors = [
-    {name = "Gabriel Nepomuceno", email = "gabriel.bico@gmail.com"}
-]
+license = "MIT"
+authors = ["Gabriel Nepomuceno <gabriel.bico@gmail.com>"]
 keywords = ["video", "transcription", "analysis", "moviepy", "whisper"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -21,14 +14,16 @@ classifiers = [
     "Topic :: Multimedia :: Video",
     "Topic :: Utilities"
 ]
-dependencies = [
-    "moviepy >= 2.0.0",
-    "faster-whisper >= 1.0.3",
-    "tqdm >= 4.67.0",
-]
 
-[tool.setuptools]
-packages = ["video_meme"]
+[tool.poetry.dependencies]
+python = ">=3.12"
+moviepy = ">=2.0.0"
+faster-whisper = ">=1.0.3"
+tqdm = ">=4.67.0"
 
-[project.scripts]
+[tool.poetry.scripts]
 video-meme = "video_meme.main:entrypoint"
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
